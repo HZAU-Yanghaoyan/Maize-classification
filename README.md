@@ -1,9 +1,8 @@
-
 ## 1. System Requirements
 
 ### Software Dependencies
 
-* **MATLAB** (Version R2021a)
+* **MATLAB** (Version R2021a or newer recommended)
 * **Operating System** (Tested):
   * Windows 10 (64-bit)
 
@@ -11,7 +10,7 @@
 
 * Recommended configuration (for training):
   * 16 GB RAM or higher
-  * NVIDIA GPU
+  * NVIDIA GPU (with CUDA support)
   * 10 GB of available disk space
 
 ## 2. Installation Guide
@@ -24,89 +23,74 @@
    git clone [repository-url]
    ```
 
-2. Make sure MATLAB is installed.
+2. Ensure MATLAB is installed with the required toolboxes:
+   * Deep Learning Toolbox
+   * Image Processing Toolbox
+   * Computer Vision Toolbox (optional, for advanced preprocessing)
 
-3. Extract the demo dataset:
+3. Prepare your dataset according to the instructions in [Usage Instructions](#4-usage-instructions).
 
-   * Unzip the `demo.rar` file
-   * The extracted directory should contain sample image files
 
-### Typical Installation Time
 
-* On a standard desktop computer: approximately 5–10 minutes
+## 3. Usage Instructions
 
-## 3. Demo
+### Data Preparation
 
-### Running the Demo
+* **Supported formats**: `.jpg`, `.png`, `.bmp`
+* **Image size**: The model automatically resizes images to 224×224 pixels; no manual resizing required.
+* **Color space**: RGB images only.
+* **Folder structure**: Place images in subfolders, one subfolder per class. For example:
 
-1. Open MATLAB
-2. Set the current directory to the folder containing the code
-3. Run the demo script:
+  ```
+  your_dataset/
+      class_1/
+          image1.jpg
+          image2.jpg
+          ...
+      class_2/
+          image1.jpg
+          ...
+  ```
 
-   ```matlab
-   Image_Classification_OurModel_demo
-   ```
+### Running the Model
 
-### Expected Output
+1. Open the script `Image_Classification_OurModel.m` (or `Image_Classification_ResNet18.m`) in MATLAB.
+2. Locate the line that sets the `Location` variable (near the top of the script) and change it to the path of your dataset folder.
+3. Run the script. The model will:
+   * Load and split the data into training and validation sets.
+   * Train the network.
+   * Display training progress, accuracy, and a classification summary.
 
-* Model architecture visualization
-* Image classification accuracy
-* Summary table of deep phenotypes
+### Parameter Tuning
 
-### Expected Run Time
+You can modify training options inside the script:
 
-* On a standard desktop computer: approximately 5–10 minutes
+* **Learning rate**
+* **Mini-batch size**
+* **Max epochs**
+* **Optimizer** (e.g., `sgdm`, `adam`)
 
-## 4. Usage Instructions
+These options are defined using the `trainingOptions` function in MATLAB.
 
-### Running the Software on Your Own Data
-
-1. **Data Preparation**:
-
-   * Supported formats: `.jpg`, `.png`
-   * Image size: recommended 224 × 224 pixels (automatic resizing supported)
-   * Color space: RGB
-   * Data organization: one subfolder per class
-
-2. **Modify Configuration**:
-
-   * Edit the `Location` variable in the script to point to your data directory
-
-3. **Run the Model**:
-
-   ```matlab
-   % Train OurModel
-   Image_Classification_OurModel
-
-   % Or use ResNet18 as a baseline
-   Image_Classification_ResNet18
-   ```
-
-4. **Parameter Tuning**:
-
-   * Training parameters can be adjusted in the `options` section:
-
-     * Learning rate
-     * Batch size
-     * Number of epochs
-     * Optimizer settings
-
-## 5. File Description
+## 4. File Description
 
 ### Main Files
 
-* `Image_Classification_OurModel.m` – Main implementation of our proposed model
-* `Image_Classification_OurModel_demo.m` – Demo script
-* `Image_Classification_ResNet18.m` – Baseline models such as ResNet18
-* `demo.rar` – Demo dataset (contains sample images)
+* `Image_Classification_OurModel.m` – Main implementation of our proposed deep learning model for image classification.
+* `Image_Classification_ResNet18.m` – Baseline implementation using the pre-trained ResNet18 network (for comparison).
+
 
 ## Citation
 
-If you use this code in your research, please cite our paper.
+If you use this code in your research, please cite our paper:
+
+```
+[Paper citation details to be added]
+```
 
 ## Support
 
-If you have any questions, please submit an issue via GitHub Issues or contact the authors.
+For questions or issues, please open an issue on GitHub or contact the authors directly.
 
 ---
 
